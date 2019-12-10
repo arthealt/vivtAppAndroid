@@ -1,4 +1,44 @@
 <resources>
-    <string name="app_name">My Application</string>
-    <string name="none_items">None items</string>
+    <string name="app_name">ВИВТ</string>
+
+    <string name="error_connection">При загрузке данных произошла ошибка. Проверьте ваше подключение</string>
+    <string name="error_unexpected">Произошла непредвиденная ошибка. Повторите попытку позже</string>
+    <string name="error_not_yet_data_semester">Данных за этот семестр ещё нет</string>
+    <string name="email_err">Email введен не верно</string>
+    <string name="password_short">Пароль слишком короткий</string>
+    <string name="fill_field">Заполните это поле</string>
+
+    <string name="btn_auth">Войти</string>
+    <string name="logout">Выйти</string>
+    <string name="email">Email</string>
+    <string name="password">Пароль</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="authorization">Авторизация&#8230;</string>
+
+    <string name="news">Новости</string>
+    <string name="schedule">Расписание</string>
+    <string name="brs">БРС</string>
+
+    <string name="none_ball">-</string>
+    <string name="not_ball">Нет оценки</string>
+    <string name="ballCP1">КТ1: %s</string>
+    <string name="ballCP2">КТ2: %s</string>
+    <string name="ballCP3">КТ3: %s</string>
+    <string name="ballCP4">КТ4: %s</string>
+    <string name="ballMC">Аттестация: %s</string>
+    <string name="ballV">Посещаемость: %s</string>
+    <string name="ballSum">Всего: %s</string>
+
+    <string name="semester_1">1 семестр</string>
+    <string name="semester_2">2 семестр</string>
+    <string name="semester_3">3 семестр</string>
+    <string name="semester_4">4 семестр</string>
+    <string name="semester_5">5 семестр</string>
+    <string name="semester_6">6 семестр</string>
+    <string name="semester_7">7 семестр</string>
+    <string name="semester_8">8 семестр</string>
+    <string name="semester_9">9 семестр</string>
+    <string name="semester_10">10 семестр</string>
+    <string name="semester_11">11 семестр</string>
+    <string name="semester_12">12 семестр</string>
 </resources>

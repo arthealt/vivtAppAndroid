@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="phrases">
+        <item>Люби ВИВТ, Гарвад подождет!</item>
+        <item>ВИВТ - команда профессионалов</item>
+        <item>ВИВТ лучший институт</item>
+        <item>Институт высоких технологий</item>
+    </string-array>
+</resources>

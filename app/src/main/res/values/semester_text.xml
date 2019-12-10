@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="semestr_text">
+        <item>1 семестер</item>
+        <item>2 семестер</item>
+        <item>3 семестер</item>
+        <item>4 семестер</item>
+        <item>5 семестер</item>
+        <item>6 семестер</item>
+        <item>7 семестер</item>
+        <item>8 семестер</item>
+        <item>9 семестер</item>
+        <item>10 семестер</item>
+        <item>11 семестер</item>
+        <item>12 семестер</item>
+    </string-array>
+</resources>
