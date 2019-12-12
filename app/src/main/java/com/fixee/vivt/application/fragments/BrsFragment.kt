@@ -9,9 +9,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fixee.vivt.R
+import com.fixee.vivt.application.activity.MainActivity
 import com.fixee.vivt.application.adapters.BrsAdapter
 import com.fixee.vivt.application.helpers.StateBrs
 import com.fixee.vivt.application.helpers.Util
@@ -48,12 +48,14 @@ class BrsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.brs)
+
         viewModel = ViewModelProviders.of(this, viewModelFactory)[BrsViewModel::class.java]
         lifecycle.addObserver(viewModel)
 
         //recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+        //recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
 
         chips.setOnCheckedChangeListener { chipGroup: ChipGroup, _: Int ->
 
@@ -133,18 +135,18 @@ class BrsFragment : Fragment() {
     }
 
     private fun updateChips(action: Boolean, semester: Int) {
-        if (semester != 1) chip1.isClickable = action else if (action) chip1.isClickable = false
-        if (semester != 2) chip2.isClickable = action else if (action) chip2.isClickable = false
-        if (semester != 3) chip3.isClickable = action else if (action) chip3.isClickable = false
-        if (semester != 4) chip4.isClickable = action else if (action) chip4.isClickable = false
-        if (semester != 5) chip5.isClickable = action else if (action) chip5.isClickable = false
-        if (semester != 6) chip6.isClickable = action else if (action) chip6.isClickable = false
-        if (semester != 7) chip7.isClickable = action else if (action) chip7.isClickable = false
-        if (semester != 8) chip8.isClickable = action else if (action) chip8.isClickable = false
-        if (semester != 9) chip9.isClickable = action else if (action) chip9.isClickable = false
-        if (semester != 10) chip10.isClickable = action else if (action) chip10.isClickable = false
-        if (semester != 11) chip11.isClickable = action else if (action) chip11.isClickable = false
-        if (semester != 12) chip12.isClickable = action else if (action) chip12.isClickable = false
+        if (semester != 1) chip1.isClickable = action else if (!action) chip1.isClickable = false
+        if (semester != 2) chip2.isClickable = action else if (!action) chip2.isClickable = false
+        if (semester != 3) chip3.isClickable = action else if (!action) chip3.isClickable = false
+        if (semester != 4) chip4.isClickable = action else if (!action) chip4.isClickable = false
+        if (semester != 5) chip5.isClickable = action else if (!action) chip5.isClickable = false
+        if (semester != 6) chip6.isClickable = action else if (!action) chip6.isClickable = false
+        if (semester != 7) chip7.isClickable = action else if (!action) chip7.isClickable = false
+        if (semester != 8) chip8.isClickable = action else if (!action) chip8.isClickable = false
+        if (semester != 9) chip9.isClickable = action else if (!action) chip9.isClickable = false
+        if (semester != 10) chip10.isClickable = action else if (!action) chip10.isClickable = false
+        if (semester != 11) chip11.isClickable = action else if (!action) chip11.isClickable = false
+        if (semester != 12) chip12.isClickable = action else if (!action) chip12.isClickable = false
     }
 
     private fun updateRecyclerView(brsList: ArrayList<Brs>) {

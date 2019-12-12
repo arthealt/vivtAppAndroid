@@ -12,16 +12,16 @@ class LoginViewModel (private val repository: LoginRepositoryImpl): ViewModel(),
     private val viewModelJob = Job()
     private val viewModelScope = CoroutineScope(Dispatchers.IO + viewModelJob)
 
-    fun auth(email: String, password: String) {
+    fun auth(email: String, password: String, fcmToken: String) {
         state.apply { value = StateLogin.LoadingState() }
         viewModelScope.launch {
             try {
-                val auth = repository.auth(email, password).await()
+                val auth = repository.auth(email, password, fcmToken).await()
+
+                if (auth.status == "success") pushToken(auth.token, auth.userStatus)
 
                 launch(Dispatchers.Main) {
                     state.apply { value = if (auth.status == "success") StateLogin.SuccessLogin(auth) else StateLogin.ErrorLogin(auth.error[0].name) }
-
-                    if (auth.status == "success") pushToken(auth.token, auth.userStatus)
                 }
             } catch (e: Exception) {
                 launch(Dispatchers.Main) {

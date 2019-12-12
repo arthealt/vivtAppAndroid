@@ -13,9 +13,9 @@ import javax.inject.Inject
 
 class LoginRepositoryImpl @Inject constructor(private val roomAppDatabase: RoomAppDatabase, private val authService: AuthService): LoginRepository {
 
-    override suspend fun auth(email: String, password: String): Deferred<Auth> {
+    override suspend fun auth(email: String, password: String, fcmToken: String): Deferred<Auth> {
         return GlobalScope.async {
-            authService.authAsync(email, password)
+            authService.authAsync(email, password, fcmToken, "android")
         }
     }
 

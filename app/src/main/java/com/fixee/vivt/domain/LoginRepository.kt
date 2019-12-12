@@ -6,7 +6,7 @@ import kotlinx.coroutines.Deferred
 
 interface LoginRepository {
 
-    suspend fun auth(email: String, password: String): Deferred<Auth>
+    suspend fun auth(email: String, password: String, fcmToken: String): Deferred<Auth>
 
     suspend fun pushToken(token: String, userStatus: String)
 

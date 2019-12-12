@@ -58,10 +58,11 @@ class LoginActivity : AppCompatActivity() {
                 if (validateFields()) {
                     val email = editEmail.text.toString().trim()
                     val password = editPassword.text.toString().md5()
+                    val fcmToken = getSharedPreferences("main", Context.MODE_PRIVATE).getString("fcm_token", "")
 
                     btnAuth.isEnabled = false
                     hideKeyboard()
-                    viewModel.auth(email, password)
+                    viewModel.auth(email, password, fcmToken!!)
                 }
             } else {
                 hideKeyboard()

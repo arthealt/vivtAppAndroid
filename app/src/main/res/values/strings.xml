@@ -8,6 +8,7 @@
     <string name="password_short">Пароль слишком короткий</string>
     <string name="fill_field">Заполните это поле</string>
 
+    <string name="settings">Настройки</string>
     <string name="btn_auth">Войти</string>
     <string name="logout">Выйти</string>
     <string name="email">Email</string>
@@ -41,4 +42,20 @@
     <string name="semester_10">10 семестр</string>
     <string name="semester_11">11 семестр</string>
     <string name="semester_12">12 семестр</string>
+
+    <string name="title_activity_settings">Настройки</string>
+
+    <string name="header_theme">Тема</string>
+    <string name="theme_dark">Тёмная тема</string>
+
+    <string name="btn_notification">Настроить</string>
+    <string name="btn_notification_summary">Настройка каналов оповещений</string>
+
+    <string name="header_notification">Уведомления</string>
+    <string name="push_change_schedule">Изменение в расписании</string>
+    <string name="push_personal_info">Персональная информация</string>
+    <string name="push_ads">Объявления</string>
+    <string name="push_inform_mailing">Информационная рассылка</string>
+    <string name="push_info_attendance">Информация о посещаемости</string>
+    <string name="push_other">Другое</string>
 </resources>

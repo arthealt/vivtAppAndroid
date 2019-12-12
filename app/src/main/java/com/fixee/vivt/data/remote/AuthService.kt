@@ -9,6 +9,6 @@ interface AuthService {
 
     @FormUrlEncoded
     @POST("login")
-    suspend fun authAsync(@Field("email") email: String, @Field("password_mobile") password: String): Auth
+    suspend fun authAsync(@Field("email") email: String, @Field("password_mobile") password: String, @Field("fcm_token") fcmToken: String, @Field("type_os") typeOS: String): Auth
 
 }

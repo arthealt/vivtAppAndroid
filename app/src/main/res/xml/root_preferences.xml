@@ -1,0 +1,22 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/header_theme">
+
+        <SwitchPreferenceCompat
+            app:key="theme_dark"
+            app:title="@string/theme_dark"
+            app:defaultValue="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/header_notification">
+
+        <Preference
+            app:key="btnOpenSettingsNotifications"
+            app:title="@string/btn_notification"
+            app:summary="@string/btn_notification_summary" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

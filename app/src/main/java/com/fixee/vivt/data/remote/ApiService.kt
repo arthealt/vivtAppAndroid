@@ -11,4 +11,8 @@ interface ApiService {
     @POST("get-brs")
     suspend fun getBrs(@Field("token") token: String, @Field("semester") semester: Int): ResponseBrs
 
+//    @FormUrlEncoded
+//    @POST("push-permission-change")
+//    suspend fun pushUpdate(@Field("token") token: String, @Field("semester") semester: Int): ResponseBrs
+
 }

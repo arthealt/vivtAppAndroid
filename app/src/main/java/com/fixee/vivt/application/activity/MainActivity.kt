@@ -65,6 +65,11 @@ class MainActivity : AppCompatActivity(), BottomNavController.NavGraphProvider {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+            R.id.settings -> {
+                toSettings()
+                true
+            }
+
             R.id.logout -> {
                 logout()
                 true
@@ -77,6 +82,10 @@ class MainActivity : AppCompatActivity(), BottomNavController.NavGraphProvider {
         when (token.token) {
             "" -> toLogin()
         }
+    }
+
+    private fun toSettings() {
+        startActivity(Intent(this, SettingsActivity::class.java))
     }
 
     private fun logout() {
