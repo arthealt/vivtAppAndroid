@@ -10,13 +10,44 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        app:key="notification"
         app:title="@string/header_notification">
 
-        <Preference
-            app:key="btnOpenSettingsNotifications"
-            app:title="@string/btn_notification"
-            app:summary="@string/btn_notification_summary" />
+        <SwitchPreferenceCompat
+            app:key="1"
+            app:title="@string/push_change_schedule"
+            app:defaultValue="true" />
+
+        <SwitchPreferenceCompat
+            app:key="2"
+            app:title="@string/push_personal_info"
+            app:defaultValue="true" />
+
+        <SwitchPreferenceCompat
+            app:key="3"
+            app:title="@string/push_ads"
+            app:defaultValue="true" />
+
+        <SwitchPreferenceCompat
+            app:key="4"
+            app:title="@string/push_inform_mailing"
+            app:defaultValue="true" />
+
+        <SwitchPreferenceCompat
+            app:key="5"
+            app:title="@string/push_info_attendance"
+            app:defaultValue="true" />
 
     </PreferenceCategory>
+
+<!--    <PreferenceCategory-->
+<!--        app:title="@string/header_notification">-->
+
+<!--        <Preference-->
+<!--            app:key="btnOpenSettingsNotifications"-->
+<!--            app:title="@string/btn_notification"-->
+<!--            app:summary="@string/btn_notification_summary" />-->
+
+<!--    </PreferenceCategory>-->
 
 </PreferenceScreen>

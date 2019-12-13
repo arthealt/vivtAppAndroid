@@ -6,11 +6,14 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.fixee.vivt.R
 import com.fixee.vivt.application.fragments.BrsFragment
 import com.fixee.vivt.application.helpers.BottomNavController
 import com.fixee.vivt.application.helpers.setUpNavigation
+import com.fixee.vivt.application.viewmodels.MainViewModel
+import com.fixee.vivt.application.viewmodels.MainViewModelFactory
 import com.fixee.vivt.data.storage.entity.Token
 import com.fixee.vivt.di.App
 import kotlinx.android.synthetic.main.activity_main.*
@@ -20,6 +23,9 @@ class MainActivity : AppCompatActivity(), BottomNavController.NavGraphProvider {
 
     @Inject
     lateinit var token: Token
+    @Inject
+    lateinit var viewModelFactory: MainViewModelFactory
+    private lateinit var viewModel: MainViewModel
 
     private val navController by lazy(LazyThreadSafetyMode.NONE) {
         Navigation.findNavController(this, R.id.container)
@@ -35,6 +41,9 @@ class MainActivity : AppCompatActivity(), BottomNavController.NavGraphProvider {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        viewModel = ViewModelProviders.of(this, viewModelFactory)[MainViewModel::class.java]
+        lifecycle.addObserver(viewModel)
 
         bottomNavController.setNavGraphProvider(this)
         bottomNavigationView.setUpNavigation(bottomNavController)
@@ -89,6 +98,7 @@ class MainActivity : AppCompatActivity(), BottomNavController.NavGraphProvider {
     }
 
     private fun logout() {
+        viewModel.logout()
         App.getComponent().provideRoomAppDatabase().tokenDao().deleteToken(token)
         toLogin()
     }
@@ -108,5 +118,4 @@ class MainActivity : AppCompatActivity(), BottomNavController.NavGraphProvider {
     override fun onSupportNavigateUp(): Boolean = navController.navigateUp()
 
     override fun onBackPressed() = bottomNavController.onBackPressed()
-
 }

@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fixee.vivt.R
 import com.fixee.vivt.application.activity.MainActivity
 import com.fixee.vivt.application.adapters.BrsAdapter
-import com.fixee.vivt.application.helpers.StateBrs
 import com.fixee.vivt.application.helpers.Util
+import com.fixee.vivt.application.intent.StateBrs
 import com.fixee.vivt.application.viewmodels.BrsViewModel
 import com.fixee.vivt.application.viewmodels.BrsViewModelFactory
 import com.fixee.vivt.data.remote.models.Brs
@@ -76,10 +76,12 @@ class BrsFragment : Fragment() {
                 R.id.chip12 -> semester = 12
             }
 
-            if (util.isInternetConnection() && semester != 0) {
-                viewModel.getBrs(semester)
-            } else {
-                viewModel.state.apply { value = StateBrs.ErrorLoad(Error(298, ""), semester) }
+            if (semester != 0) {
+                if (util.isInternetConnection()) {
+                    viewModel.getBrs(semester)
+                } else {
+                    viewModel.state.apply { value = StateBrs.ErrorLoad(Error(298, ""), semester) }
+                }
             }
         }
 

@@ -7,4 +7,6 @@ interface MainRepository {
 
     suspend fun getBrs(token: String, semester: Int): Deferred<ResponseBrs>
 
+    suspend fun logout(token: String)
+
 }

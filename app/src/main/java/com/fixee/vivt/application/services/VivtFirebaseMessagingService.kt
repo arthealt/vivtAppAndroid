@@ -1,12 +1,10 @@
 package com.fixee.vivt.application.services
 
-import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
-import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.preference.PreferenceManager
 import com.fixee.vivt.R
@@ -22,9 +20,9 @@ class VivtFirebaseMessagingService: FirebaseMessagingService() {
 
     override fun onNewToken(fcmToken: String) {
         super.onNewToken(fcmToken)
-        getSharedPreferences("main", Context.MODE_PRIVATE).edit().putString("fcm_token", fcmToken).apply()
+        PreferenceManager.getDefaultSharedPreferences(this).edit().putString("fcm_token", fcmToken).apply()
         if (token.token.isNotEmpty()) {
-            // update fcm token
+            // update fcm token api
         }
     }
 
@@ -49,28 +47,30 @@ class VivtFirebaseMessagingService: FirebaseMessagingService() {
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        notificationManager.notify(0, notificationBuilder.build())
 
-            if (notificationManager.getNotificationChannel(channelId) == null) {
-                notificationManager.createNotificationChannel(NotificationChannel("1", getString(R.string.push_change_schedule), NotificationManager.IMPORTANCE_DEFAULT))
-                notificationManager.createNotificationChannel(NotificationChannel("2", getString(R.string.push_personal_info), NotificationManager.IMPORTANCE_DEFAULT))
-                notificationManager.createNotificationChannel(NotificationChannel("3", getString(R.string.push_ads), NotificationManager.IMPORTANCE_DEFAULT))
-                notificationManager.createNotificationChannel(NotificationChannel("4", getString(R.string.push_inform_mailing), NotificationManager.IMPORTANCE_DEFAULT))
-                notificationManager.createNotificationChannel(NotificationChannel("5", getString(R.string.push_info_attendance), NotificationManager.IMPORTANCE_DEFAULT))
-                notificationManager.createNotificationChannel(NotificationChannel("Default", getString(R.string.push_other), NotificationManager.IMPORTANCE_DEFAULT))
-            }
-
-            val current = notificationManager.getNotificationChannel(channelId)
-
-            if (current.importance != NotificationManager.IMPORTANCE_NONE) {
-                notificationManager.notify(0, notificationBuilder.build())
-            }
-        } else {
-            val prefs = PreferenceManager.getDefaultSharedPreferences(this)
-
-            if (prefs.getBoolean(channelId, true)) {
-                notificationManager.notify(0, notificationBuilder.build())
-            }
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//
+//            if (notificationManager.getNotificationChannel(channelId) == null) {
+//                notificationManager.createNotificationChannel(NotificationChannel("1", getString(R.string.push_change_schedule), NotificationManager.IMPORTANCE_DEFAULT))
+//                notificationManager.createNotificationChannel(NotificationChannel("2", getString(R.string.push_personal_info), NotificationManager.IMPORTANCE_DEFAULT))
+//                notificationManager.createNotificationChannel(NotificationChannel("3", getString(R.string.push_ads), NotificationManager.IMPORTANCE_DEFAULT))
+//                notificationManager.createNotificationChannel(NotificationChannel("4", getString(R.string.push_inform_mailing), NotificationManager.IMPORTANCE_DEFAULT))
+//                notificationManager.createNotificationChannel(NotificationChannel("5", getString(R.string.push_info_attendance), NotificationManager.IMPORTANCE_DEFAULT))
+//                notificationManager.createNotificationChannel(NotificationChannel("Default", getString(R.string.push_other), NotificationManager.IMPORTANCE_DEFAULT))
+//            }
+//
+//            val current = notificationManager.getNotificationChannel(channelId)
+//
+//            if (current.importance != NotificationManager.IMPORTANCE_NONE) {
+//                notificationManager.notify(0, notificationBuilder.build())
+//            }
+//        } else {
+//            val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+//
+//            if (prefs.getBoolean(channelId, true)) {
+//                notificationManager.notify(0, notificationBuilder.build())
+//            }
+//        }
     }
 }

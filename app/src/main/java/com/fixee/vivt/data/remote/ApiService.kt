@@ -1,6 +1,8 @@
 package com.fixee.vivt.data.remote
 
 import com.fixee.vivt.data.remote.models.ResponseBrs
+import com.fixee.vivt.data.remote.models.Status
+import com.fixee.vivt.data.remote.models.Teachers
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
@@ -11,8 +13,16 @@ interface ApiService {
     @POST("get-brs")
     suspend fun getBrs(@Field("token") token: String, @Field("semester") semester: Int): ResponseBrs
 
-//    @FormUrlEncoded
-//    @POST("push-permission-change")
-//    suspend fun pushUpdate(@Field("token") token: String, @Field("semester") semester: Int): ResponseBrs
+    @FormUrlEncoded
+    @POST("get-pps-list")
+    suspend fun getTeachers(@Field("token") token: String): Teachers
+
+    @FormUrlEncoded
+    @POST("push-permission-change")
+    suspend fun pushUpdate(@Field("type_os") typeOS: String, @Field("fcm_token") fcmToken: String, @Field("field") field: Int, @Field("value") value: Boolean): Status
+
+    @FormUrlEncoded
+    @POST("logout")
+    suspend fun logoutServer(@Field("app_token") token: String)
 
 }

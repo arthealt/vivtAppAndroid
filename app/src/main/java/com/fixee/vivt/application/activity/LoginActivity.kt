@@ -13,15 +13,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.fixee.vivt.R
-import com.fixee.vivt.application.helpers.StateLogin
 import com.fixee.vivt.application.helpers.Util
 import com.fixee.vivt.application.helpers.md5
+import com.fixee.vivt.application.intent.StateLogin
 import com.fixee.vivt.application.viewmodels.LoginViewModel
 import com.fixee.vivt.application.viewmodels.LoginViewModelFactory
 import com.fixee.vivt.di.App
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
+import javax.inject.Named
 
 class LoginActivity : AppCompatActivity() {
 
@@ -29,6 +30,9 @@ class LoginActivity : AppCompatActivity() {
     lateinit var loginViewModelFactory: LoginViewModelFactory
     @Inject
     lateinit var util: Util
+    @Inject
+    @Named("fcmToken")
+    lateinit var fcmToken: String
     private lateinit var viewModel: LoginViewModel
     private lateinit var progressDialog: ProgressDialog
 
@@ -58,11 +62,10 @@ class LoginActivity : AppCompatActivity() {
                 if (validateFields()) {
                     val email = editEmail.text.toString().trim()
                     val password = editPassword.text.toString().md5()
-                    val fcmToken = getSharedPreferences("main", Context.MODE_PRIVATE).getString("fcm_token", "")
 
                     btnAuth.isEnabled = false
                     hideKeyboard()
-                    viewModel.auth(email, password, fcmToken!!)
+                    viewModel.auth(email, password, fcmToken)
                 }
             } else {
                 hideKeyboard()

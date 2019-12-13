@@ -1,7 +1,7 @@
 package com.fixee.vivt.application.viewmodels
 
 import androidx.lifecycle.*
-import com.fixee.vivt.application.helpers.StateLogin
+import com.fixee.vivt.application.intent.StateLogin
 import com.fixee.vivt.domain.implementations.LoginRepositoryImpl
 import kotlinx.coroutines.*
 
@@ -21,7 +21,7 @@ class LoginViewModel (private val repository: LoginRepositoryImpl): ViewModel(),
                 if (auth.status == "success") pushToken(auth.token, auth.userStatus)
 
                 launch(Dispatchers.Main) {
-                    state.apply { value = if (auth.status == "success") StateLogin.SuccessLogin(auth) else StateLogin.ErrorLogin(auth.error[0].name) }
+                    state.apply { value = if (auth.status == "success") StateLogin.SuccessLogin() else StateLogin.ErrorLogin(auth.error[0].name) }
                 }
             } catch (e: Exception) {
                 launch(Dispatchers.Main) {

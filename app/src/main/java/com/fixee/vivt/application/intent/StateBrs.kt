@@ -1,4 +1,4 @@
-package com.fixee.vivt.application.helpers
+package com.fixee.vivt.application.intent
 
 import com.fixee.vivt.data.remote.models.Brs
 import com.fixee.vivt.data.remote.models.Error

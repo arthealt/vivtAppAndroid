@@ -1,16 +1,13 @@
 package com.fixee.vivt.application.viewmodels
 
-import android.os.Parcelable
 import androidx.lifecycle.*
-import com.fixee.vivt.application.helpers.StateBrs
+import com.fixee.vivt.application.intent.StateBrs
 import com.fixee.vivt.data.remote.models.Error
 import com.fixee.vivt.data.storage.entity.Token
 import com.fixee.vivt.domain.implementations.MainRepositoryImpl
 import kotlinx.coroutines.*
 
 class BrsViewModel (private val token: Token, private val repository: MainRepositoryImpl): ViewModel(), LifecycleObserver {
-
-    var view: Parcelable? = null
 
     val state: MutableLiveData<StateBrs> = MutableLiveData<StateBrs>().apply { value = StateBrs.NormalState() }
 
@@ -22,7 +19,9 @@ class BrsViewModel (private val token: Token, private val repository: MainReposi
     }
 
     fun getBrs(semester: Int) {
+
         state.apply { value = StateBrs.LoadingState(semester) }
+
         viewModelScope.launch {
             try {
                 val responseBrs = repository.getBrs(token.token, semester).await()
@@ -50,5 +49,4 @@ class BrsViewModel (private val token: Token, private val repository: MainReposi
     fun onDestroy() {
         viewModelJob.cancelChildren()
     }
-
 }

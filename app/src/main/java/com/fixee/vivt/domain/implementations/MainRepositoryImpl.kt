@@ -16,4 +16,10 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
         }
     }
 
+    override suspend fun logout(token: String) {
+        GlobalScope.async {
+            apiService.logoutServer(token)
+        }
+    }
+
 }
