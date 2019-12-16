@@ -3,11 +3,12 @@
 
     <string name="error_connection">При загрузке данных произошла ошибка. Проверьте ваше подключение</string>
     <string name="error_unexpected">Произошла непредвиденная ошибка. Повторите попытку позже</string>
-    <string name="error_not_yet_data_semester">Данных за этот семестр ещё нет</string>
+    <string name="error_not_yet_data_semester">Данных за %d семестр ещё нет</string>
     <string name="email_err">Email введен не верно</string>
     <string name="password_short">Пароль слишком короткий</string>
     <string name="fill_field">Заполните это поле</string>
 
+    <string name="notification">Уведомления</string>
     <string name="settings">Настройки</string>
     <string name="btn_auth">Войти</string>
     <string name="logout">Выйти</string>
@@ -18,7 +19,10 @@
 
     <string name="news">Новости</string>
     <string name="schedule">Расписание</string>
+    <string name="teachers">Преподователи</string>
     <string name="brs">БРС</string>
+    <string name="more_toolbar">ВИВТ</string>
+    <string name="more_menu">Ещё</string>
 
     <string name="none_ball">-</string>
     <string name="not_ball">Нет оценки</string>
@@ -48,8 +52,8 @@
     <string name="header_theme">Тема</string>
     <string name="theme_dark">Тёмная тема</string>
 
-    <string name="btn_notification">Настроить</string>
-    <string name="btn_notification_summary">Настройка каналов оповещений</string>
+<!--    <string name="btn_notification">Настроить</string>-->
+<!--    <string name="btn_notification_summary">Настройка каналов оповещений</string>-->
 
     <string name="header_notification">Уведомления</string>
     <string name="push_change_schedule">Изменение в расписании</string>
@@ -58,4 +62,6 @@
     <string name="push_inform_mailing">Информационная рассылка</string>
     <string name="push_info_attendance">Информация о посещаемости</string>
     <string name="push_other">Другое</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -74,6 +74,11 @@ class MainActivity : AppCompatActivity(), BottomNavController.NavGraphProvider {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+            R.id.notification -> {
+                toNotification()
+                true
+            }
+
             R.id.settings -> {
                 toSettings()
                 true
@@ -93,14 +98,18 @@ class MainActivity : AppCompatActivity(), BottomNavController.NavGraphProvider {
         }
     }
 
-    private fun toSettings() {
-        startActivity(Intent(this, SettingsActivity::class.java))
-    }
-
     private fun logout() {
         viewModel.logout()
         App.getComponent().provideRoomAppDatabase().tokenDao().deleteToken(token)
         toLogin()
+    }
+
+    private fun toNotification() {
+        //startActivity(Intent(this, SettingsActivity::class.java))
+    }
+
+    private fun toSettings() {
+        startActivity(Intent(this, SettingsActivity::class.java))
     }
 
     private fun toLogin() {
@@ -111,7 +120,9 @@ class MainActivity : AppCompatActivity(), BottomNavController.NavGraphProvider {
     override fun getNavGraphId(itemId: Int) = when (itemId) {
         R.id.news_graph -> R.navigation.news_graph
         R.id.schedule_graph -> R.navigation.schedule_graph
+        R.id.teachers_graph -> R.navigation.teachers_graph
         R.id.brs_graph -> R.navigation.brs_graph
+        R.id.more_graph -> R.navigation.more_graph
         else -> R.navigation.news_graph
     }
 

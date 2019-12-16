@@ -53,9 +53,8 @@ class BrsFragment : Fragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory)[BrsViewModel::class.java]
         lifecycle.addObserver(viewModel)
 
-        //recyclerView.setHasFixedSize(true)
+        recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        //recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
 
         chips.setOnCheckedChangeListener { chipGroup: ChipGroup, _: Int ->
 
@@ -123,7 +122,7 @@ class BrsFragment : Fragment() {
                         299 -> snackError(getString(R.string.error_unexpected)) // Unexpected error
                         300 -> logout?.invoke() // Wrong token, logout
                         301 -> { // No yet data for semester
-                            errorText.text = getString(R.string.error_not_yet_data_semester)
+                            errorText.text = getString(R.string.error_not_yet_data_semester, value.semester)
                             errorText.visibility = VISIBLE
                         }
                         else -> { // Other error from server

@@ -6,6 +6,7 @@ import com.fixee.vivt.domain.MainRepository
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainRepositoryImpl @Inject constructor(private val apiService: ApiService): MainRepository {
@@ -17,7 +18,7 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
     }
 
     override suspend fun logout(token: String) {
-        GlobalScope.async {
+        GlobalScope.launch {
             apiService.logoutServer(token)
         }
     }

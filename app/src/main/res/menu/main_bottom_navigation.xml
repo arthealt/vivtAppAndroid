@@ -12,8 +12,18 @@
         android:title="@string/schedule" />
 
     <item
+        android:id="@+id/teachers_graph"
+        android:icon="@drawable/ic_teachers"
+        android:title="@string/teachers" />
+
+    <item
         android:id="@+id/brs_graph"
         android:icon="@drawable/ic_brs"
         android:title="@string/brs" />
+
+    <item
+        android:id="@+id/more_graph"
+        android:icon="@drawable/ic_compass"
+        android:title="@string/more_menu" />
 
 </menu>

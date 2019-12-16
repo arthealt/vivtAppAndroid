@@ -8,6 +8,7 @@ import com.fixee.vivt.domain.LoginRepository
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -20,7 +21,7 @@ class LoginRepositoryImpl @Inject constructor(private val roomAppDatabase: RoomA
     }
 
     override suspend fun pushToken(token: String, userStatus: String) {
-        GlobalScope.async {
+        GlobalScope.launch {
             roomAppDatabase.tokenDao().pushToken(Token(token, userStatus))
         }
     }
