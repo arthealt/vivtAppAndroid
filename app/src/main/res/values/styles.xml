@@ -37,7 +37,7 @@
 
     <style name="AppTheme.Chip" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="chipBackgroundColor">@color/chip_background</item>
-        <item name="rippleColor">@color/chip_ripple</item>
+        <item name="rippleColor">#CACACA</item>
     </style>
 
 </resources>

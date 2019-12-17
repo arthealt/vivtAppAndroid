@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.fixee.vivt.R
 import com.fixee.vivt.application.fragments.BrsFragment
+import com.fixee.vivt.application.fragments.TeachersFragment
 import com.fixee.vivt.application.helpers.BottomNavController
 import com.fixee.vivt.application.helpers.setUpNavigation
 import com.fixee.vivt.application.viewmodels.MainViewModel
@@ -56,6 +57,12 @@ class MainActivity : AppCompatActivity(), BottomNavController.NavGraphProvider {
 
         // if token wrong logout
         (fragment as? BrsFragment).let {
+            it?.logout = {
+                logout()
+            }
+        }
+
+        (fragment as? TeachersFragment).let {
             it?.logout = {
                 logout()
             }

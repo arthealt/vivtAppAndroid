@@ -7,9 +7,9 @@ import com.fixee.vivt.data.storage.entity.Token
 import com.fixee.vivt.domain.implementations.MainRepositoryImpl
 import javax.inject.Inject
 
-class BrsViewModelFactory @Inject constructor(private val util: Util, private val token: Token, private val repository: MainRepositoryImpl): ViewModelProvider.Factory {
+class TeacherViewModelFactory @Inject constructor(private val util: Util, private val token: Token, private val repository: MainRepositoryImpl): ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         @Suppress("UNCHECKED_CAST")
-        return BrsViewModel(util, token, repository) as T
+        return TeachersViewModel(util, token, repository) as T
     }
 }

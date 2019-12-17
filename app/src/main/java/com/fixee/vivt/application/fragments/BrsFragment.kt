@@ -13,12 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fixee.vivt.R
 import com.fixee.vivt.application.activity.MainActivity
 import com.fixee.vivt.application.adapters.BrsAdapter
-import com.fixee.vivt.application.helpers.Util
 import com.fixee.vivt.application.intent.StateBrs
 import com.fixee.vivt.application.viewmodels.BrsViewModel
 import com.fixee.vivt.application.viewmodels.BrsViewModelFactory
 import com.fixee.vivt.data.remote.models.Brs
-import com.fixee.vivt.data.remote.models.Error
 import com.fixee.vivt.di.App
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.snackbar.Snackbar
@@ -30,8 +28,6 @@ class BrsFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: BrsViewModelFactory
-    @Inject
-    lateinit var util: Util
     private lateinit var viewModel: BrsViewModel
     // for wrong token
     var logout: (() -> Unit)? = null
@@ -76,11 +72,7 @@ class BrsFragment : Fragment() {
             }
 
             if (semester != 0) {
-                if (util.isInternetConnection()) {
-                    viewModel.getBrs(semester)
-                } else {
-                    viewModel.state.apply { value = StateBrs.ErrorLoad(Error(298, ""), semester) }
-                }
+                viewModel.getBrs(semester)
             }
         }
 
@@ -116,6 +108,7 @@ class BrsFragment : Fragment() {
                     errorText.visibility = GONE
 
                     updateChips(true, value.semester)
+                    btnRefreshSetOnClick(value.semester)
 
                     when (value.error.code) {
                         298 -> snackError(getString(R.string.error_connection)) // No internet
@@ -133,6 +126,17 @@ class BrsFragment : Fragment() {
                 }
             }
         })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        App.clearMainComponent()
+    }
+
+    private fun btnRefreshSetOnClick(semester: Int) {
+        btnRefresh.setOnClickListener {
+            viewModel.getBrs(semester)
+        }
     }
 
     private fun updateChips(action: Boolean, semester: Int) {

@@ -17,6 +17,11 @@
     <string name="register">Зарегистрироваться</string>
     <string name="authorization">Авторизация&#8230;</string>
 
+    <string name="btnRefresh">Обновить</string>
+    <string name="search">Поиск</string>
+
+    <string name="name_teacher">%s %s %s</string>
+
     <string name="news">Новости</string>
     <string name="schedule">Расписание</string>
     <string name="teachers">Преподователи</string>
@@ -52,8 +57,8 @@
     <string name="header_theme">Тема</string>
     <string name="theme_dark">Тёмная тема</string>
 
-<!--    <string name="btn_notification">Настроить</string>-->
-<!--    <string name="btn_notification_summary">Настройка каналов оповещений</string>-->
+    <!--    <string name="btn_notification">Настроить</string>-->
+    <!--    <string name="btn_notification_summary">Настройка каналов оповещений</string>-->
 
     <string name="header_notification">Уведомления</string>
     <string name="push_change_schedule">Изменение в расписании</string>

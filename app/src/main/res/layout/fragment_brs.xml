@@ -1,19 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".application.fragments.BrsFragment">
 
-    <TextView
-        android:id="@+id/errorText"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:textSize="16sp"
-        android:visibility="gone"
-        android:layout_gravity="center" />
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/errorText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textSize="16sp"
+            android:visibility="gone"
+            android:layout_gravity="center"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnRefresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_auth"
+            android:visibility="gone"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="@string/btnRefresh"
+            android:layout_gravity="center"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="17sp" />
+
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -30,7 +54,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/test"
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
@@ -44,7 +68,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                app:layout_collapseMode="pin"
                 android:scrollbars="none"
                 android:background="@color/bgNavigationView"
                 android:elevation="4dp"
@@ -52,6 +75,7 @@
                 android:paddingBottom="16dp"
                 android:requiresFadingEdge="horizontal"
                 android:fadingEdgeLength="30dp"
+                app:layout_collapseMode="pin"
                 app:layout_scrollFlags="scroll|enterAlways|snap">
 
                 <LinearLayout

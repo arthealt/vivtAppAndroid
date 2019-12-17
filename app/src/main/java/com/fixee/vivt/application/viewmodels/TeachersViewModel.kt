@@ -2,51 +2,51 @@ package com.fixee.vivt.application.viewmodels
 
 import androidx.lifecycle.*
 import com.fixee.vivt.application.helpers.Util
-import com.fixee.vivt.application.intent.StateBrs
+import com.fixee.vivt.application.intent.StateTeachers
 import com.fixee.vivt.data.remote.models.Error
 import com.fixee.vivt.data.storage.entity.Token
 import com.fixee.vivt.domain.implementations.MainRepositoryImpl
 import kotlinx.coroutines.*
 
-class BrsViewModel (private val util: Util, private val token: Token, private val repository: MainRepositoryImpl): ViewModel(), LifecycleObserver {
+class TeachersViewModel (private val util: Util, private val token: Token, private val repository: MainRepositoryImpl): ViewModel(), LifecycleObserver {
 
-    val state: MutableLiveData<StateBrs> = MutableLiveData<StateBrs>().apply { value = StateBrs.NormalState() }
+    val state: MutableLiveData<StateTeachers> = MutableLiveData<StateTeachers>().apply { value = StateTeachers.NormalState() }
 
     private val viewModelJob = Job()
     private val viewModelScope = CoroutineScope(Dispatchers.IO + viewModelJob)
 
     init {
-        getBrs(1)
+        getTeachers()
     }
 
-    fun getBrs(semester: Int) {
-
+    fun getTeachers() {
         if (util.isInternetConnection()) {
-            state.apply { value = StateBrs.LoadingState(semester) }
+            state.apply { StateTeachers.LoadingState() }
 
             viewModelScope.launch {
                 try {
-                    val responseBrs = repository.getBrs(token.token, semester).await()
+
+                    val teachers = repository.getTeachers(token.token).await()
 
                     launch(Dispatchers.Main) {
                         @Suppress("UNCHECKED_CAST")
                         state.apply {
-                            value = when {
-                                responseBrs.brs == null -> StateBrs.ErrorLoad(Error(301, ""), semester)
-                                responseBrs.status == "success" -> StateBrs.SuccessLoad(responseBrs.brs, semester)
-                                else -> StateBrs.ErrorLoad(responseBrs.error[0], semester)
+                            value = when (teachers.status) {
+                                "success" -> StateTeachers.SuccessLoad(teachers.list!!)
+                                else -> StateTeachers.ErrorLoad(teachers.error[0])
                             }
                         }
                     }
+
                 } catch (e: Exception) {
                     launch(Dispatchers.Main) {
                         @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-                        state.apply { value = StateBrs.ErrorLoad(Error(299, e.localizedMessage), semester) }
+                        state.apply { value = StateTeachers.ErrorLoad(Error(299, e.localizedMessage)) }
                     }
                 }
             }
         } else {
-            state.apply { value = StateBrs.ErrorLoad(Error(298, ""), semester) }
+            state.apply { value = StateTeachers.ErrorLoad(Error(298, "")) }
         }
     }
 

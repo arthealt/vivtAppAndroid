@@ -16,11 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
+        <activity android:name=".application.activity.NotificationActivity"></activity>
         <activity
             android:name=".application.activity.SettingsActivity"
             android:label="@string/title_activity_settings" />
-
         <activity
             android:name=".application.activity.MainActivity"
             android:theme="@style/splashScreenTheme">
