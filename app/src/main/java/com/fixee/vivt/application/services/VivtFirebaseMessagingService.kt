@@ -9,21 +9,15 @@ import androidx.core.app.NotificationCompat
 import androidx.preference.PreferenceManager
 import com.fixee.vivt.R
 import com.fixee.vivt.application.activity.MainActivity
-import com.fixee.vivt.di.App
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
 
 class VivtFirebaseMessagingService: FirebaseMessagingService() {
 
-    val token = App.getComponent().provideToken()
-
     override fun onNewToken(fcmToken: String) {
         super.onNewToken(fcmToken)
-        PreferenceManager.getDefaultSharedPreferences(this).edit().putString("fcm_token", fcmToken).apply()
-        if (token.token.isNotEmpty()) {
-            // update fcm token api
-        }
+        PreferenceManager.getDefaultSharedPreferences(this).edit().putString("fcmToken", fcmToken).apply()
     }
 
     override fun onMessageReceived(p0: RemoteMessage) {

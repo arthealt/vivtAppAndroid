@@ -15,7 +15,7 @@ import com.fixee.vivt.application.helpers.BottomNavController
 import com.fixee.vivt.application.helpers.setUpNavigation
 import com.fixee.vivt.application.viewmodels.MainViewModel
 import com.fixee.vivt.application.viewmodels.MainViewModelFactory
-import com.fixee.vivt.data.storage.entity.Token
+import com.fixee.vivt.data.storage.entity.User
 import com.fixee.vivt.di.App
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -23,10 +23,11 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity(), BottomNavController.NavGraphProvider {
 
     @Inject
-    lateinit var token: Token
+    lateinit var user: User
     @Inject
     lateinit var viewModelFactory: MainViewModelFactory
     private lateinit var viewModel: MainViewModel
+
 
     private val navController by lazy(LazyThreadSafetyMode.NONE) {
         Navigation.findNavController(this, R.id.container)
@@ -55,7 +56,7 @@ class MainActivity : AppCompatActivity(), BottomNavController.NavGraphProvider {
     override fun onAttachFragment(fragment: Fragment) {
         super.onAttachFragment(fragment)
 
-        // if token wrong logout
+        // if token wrong, logout
         (fragment as? BrsFragment).let {
             it?.logout = {
                 logout()
@@ -100,14 +101,13 @@ class MainActivity : AppCompatActivity(), BottomNavController.NavGraphProvider {
     }
 
     private fun checkAuth() {
-        when (token.token) {
+        when (user.token) {
             "" -> toLogin()
         }
     }
 
     private fun logout() {
         viewModel.logout()
-        App.getComponent().provideRoomAppDatabase().tokenDao().deleteToken(token)
         toLogin()
     }
 

@@ -6,7 +6,7 @@ import com.fixee.vivt.data.remote.models.Error
 import com.fixee.vivt.domain.implementations.SettingsRepositoryImpl
 import kotlinx.coroutines.*
 
-class SettingsViewModel(private val fcmToken: String, private val repository: SettingsRepositoryImpl): ViewModel(), LifecycleObserver {
+class SettingsViewModel(private val repository: SettingsRepositoryImpl): ViewModel(), LifecycleObserver {
 
     val state: MutableLiveData<StateSettings> = MutableLiveData<StateSettings>().apply { value = StateSettings.NormalState() }
 
@@ -19,7 +19,7 @@ class SettingsViewModel(private val fcmToken: String, private val repository: Se
 
         viewModelScope.launch {
             try {
-                val status = repository.updatePushChange(fcmToken, field, valueField).await()
+                val status = repository.updatePushChange(field, valueField).await()
 
                 launch(Dispatchers.Main) {
                     @Suppress("UNCHECKED_CAST")

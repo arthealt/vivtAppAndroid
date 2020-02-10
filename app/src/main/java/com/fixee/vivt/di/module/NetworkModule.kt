@@ -12,7 +12,12 @@ class NetworkModule {
 
     @Provides
     @PerApplication
-    fun provideOkHttpClient(): OkHttpClient = OkHttpClient().newBuilder().build()
+    fun provideOkHttpClient(): OkHttpClient {
+//        val interceptor = HttpLoggingInterceptor()
+//        interceptor.level = HttpLoggingInterceptor.Level.BODY
+//        return OkHttpClient().newBuilder().addInterceptor(interceptor).build()
+        return OkHttpClient().newBuilder().build()
+    }
 
     @Provides
     @PerApplication

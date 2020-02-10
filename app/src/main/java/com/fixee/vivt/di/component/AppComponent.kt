@@ -1,7 +1,7 @@
 package com.fixee.vivt.di.component
 
 import com.fixee.vivt.data.storage.RoomAppDatabase
-import com.fixee.vivt.data.storage.entity.Token
+import com.fixee.vivt.data.storage.entity.User
 import com.fixee.vivt.di.module.AppModule
 import com.fixee.vivt.di.module.NetworkModule
 import com.fixee.vivt.di.module.StorageModule
@@ -14,7 +14,7 @@ interface AppComponent {
 
     fun provideRoomAppDatabase(): RoomAppDatabase
 
-    fun provideToken(): Token
+    fun provideUser(): User
 
     fun plusLoginComponent(): LoginComponent
 

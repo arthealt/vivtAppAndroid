@@ -3,7 +3,7 @@ package com.fixee.vivt.di.module
 import android.content.Context
 import androidx.preference.PreferenceManager
 import com.fixee.vivt.data.storage.RoomAppDatabase
-import com.fixee.vivt.data.storage.entity.Token
+import com.fixee.vivt.data.storage.entity.User
 import com.fixee.vivt.di.scope.PerApplication
 import dagger.Module
 import dagger.Provides
@@ -18,13 +18,11 @@ class StorageModule {
         RoomAppDatabase.buildDataSource(context)
 
     @Provides
-    @PerApplication
-    fun provideToken(roomAppDatabase: RoomAppDatabase): Token =
-        if (roomAppDatabase.tokenDao().getTokenExist() > 0) roomAppDatabase.tokenDao().getToken() else Token ("", "")
+    fun provideUser(roomAppDatabase: RoomAppDatabase): User =
+        if (roomAppDatabase.userDao().getUserExist() > 0) roomAppDatabase.userDao().getUser() else User("","","","")
 
     @Provides
-    @PerApplication
     @Named("fcmToken")
-    fun provideFcmToken(context: Context): String = PreferenceManager.getDefaultSharedPreferences(context).getString("fcm_token", "")!!
+    fun provideFcmToken(context: Context): String = PreferenceManager.getDefaultSharedPreferences(context).getString("fcmToken", "")!!
 
 }

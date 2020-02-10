@@ -1,5 +1,6 @@
 package com.fixee.vivt.data.remote
 
+import com.fixee.vivt.data.remote.models.Auth
 import com.fixee.vivt.data.remote.models.ResponseBrs
 import com.fixee.vivt.data.remote.models.Status
 import com.fixee.vivt.data.remote.models.Teachers
@@ -20,6 +21,10 @@ interface ApiService {
     @FormUrlEncoded
     @POST("push-permission-change")
     suspend fun pushUpdate(@Field("type_os") typeOS: String, @Field("fcm_token") fcmToken: String, @Field("field") field: Int, @Field("value") value: Boolean): Status
+
+    @FormUrlEncoded
+    @POST("login-with-token")
+    suspend fun loginWithToken(@Field("token_for_login") loginToken: String, @Field("fcm_token") fcmToken: String, @Field("type_os") typeOS: String): Auth
 
     @FormUrlEncoded
     @POST("logout")

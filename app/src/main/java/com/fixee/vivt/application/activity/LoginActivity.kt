@@ -20,9 +20,9 @@ import com.fixee.vivt.application.viewmodels.LoginViewModel
 import com.fixee.vivt.application.viewmodels.LoginViewModelFactory
 import com.fixee.vivt.di.App
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
-import javax.inject.Named
 
 class LoginActivity : AppCompatActivity() {
 
@@ -30,9 +30,6 @@ class LoginActivity : AppCompatActivity() {
     lateinit var loginViewModelFactory: LoginViewModelFactory
     @Inject
     lateinit var util: Util
-    @Inject
-    @Named("fcmToken")
-    lateinit var fcmToken: String
     private lateinit var viewModel: LoginViewModel
     private lateinit var progressDialog: ProgressDialog
 
@@ -65,7 +62,7 @@ class LoginActivity : AppCompatActivity() {
 
                     btnAuth.isEnabled = false
                     hideKeyboard()
-                    viewModel.auth(email, password, fcmToken)
+                    viewModel.auth(email, password, FirebaseInstanceId.getInstance().token!!)
                 }
             } else {
                 hideKeyboard()

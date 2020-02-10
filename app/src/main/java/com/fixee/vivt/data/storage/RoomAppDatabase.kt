@@ -4,13 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.fixee.vivt.data.storage.dao.TokenDao
-import com.fixee.vivt.data.storage.entity.Token
+import com.fixee.vivt.data.storage.dao.UserDao
+import com.fixee.vivt.data.storage.entity.User
 
-@Database(entities = [Token::class], version = 1, exportSchema = false)
+@Database(entities = [User::class], version = 1, exportSchema = false)
 abstract class RoomAppDatabase: RoomDatabase() {
 
-    abstract fun tokenDao(): TokenDao
+    abstract fun userDao(): UserDao
 
     companion object {
 

@@ -7,10 +7,11 @@ import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import javax.inject.Inject
+import javax.inject.Named
 
-class SettingsRepositoryImpl @Inject constructor(private val apiService: ApiService): SettingsRepository {
+class SettingsRepositoryImpl @Inject constructor(@param:Named("fcmToken") private val fcmToken: String, private val apiService: ApiService): SettingsRepository {
 
-    override suspend fun updatePushChange(fcmToken: String, field: Int, value: Boolean): Deferred<Status> {
+    override suspend fun updatePushChange(field: Int, value: Boolean): Deferred<Status> {
         return GlobalScope.async {
             apiService.pushUpdate("android", fcmToken, field, value)
         }

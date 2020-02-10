@@ -66,10 +66,12 @@
             android:layout_height="match_parent"
             app:layout_scrollFlags="scroll|enterAlways" >
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_collapseMode="pin"
+                android:id="@+id/topSearch"
+                android:visibility="gone"
                 app:layout_scrollFlags="scroll|enterAlways|snap">
 
                 <EditText
@@ -77,14 +79,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:visibility="gone"
-                    android:drawableRight="@drawable/ic_search"
                     android:hint="@string/search"
                     android:background="@drawable/search_edit_text"
                     android:padding="14dp"
                     android:inputType="text" />
 
-            </LinearLayout>
+                <com.fixee.vivt.application.views.SearchToCloseMorphView
+                    android:id="@+id/iconSearch"
+                    android:elevation="0dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_margin="14dp"
+                    android:layout_gravity="end" />
+
+            </FrameLayout>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>

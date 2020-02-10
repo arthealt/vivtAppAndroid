@@ -4,11 +4,10 @@ import androidx.lifecycle.*
 import com.fixee.vivt.application.helpers.Util
 import com.fixee.vivt.application.intent.StateBrs
 import com.fixee.vivt.data.remote.models.Error
-import com.fixee.vivt.data.storage.entity.Token
 import com.fixee.vivt.domain.implementations.MainRepositoryImpl
 import kotlinx.coroutines.*
 
-class BrsViewModel (private val util: Util, private val token: Token, private val repository: MainRepositoryImpl): ViewModel(), LifecycleObserver {
+class BrsViewModel (private val util: Util, private val repository: MainRepositoryImpl): ViewModel(), LifecycleObserver {
 
     val state: MutableLiveData<StateBrs> = MutableLiveData<StateBrs>().apply { value = StateBrs.NormalState() }
 
@@ -20,13 +19,12 @@ class BrsViewModel (private val util: Util, private val token: Token, private va
     }
 
     fun getBrs(semester: Int) {
-
         if (util.isInternetConnection()) {
             state.apply { value = StateBrs.LoadingState(semester) }
 
             viewModelScope.launch {
                 try {
-                    val responseBrs = repository.getBrs(token.token, semester).await()
+                    val responseBrs = repository.getBrs(semester)
 
                     launch(Dispatchers.Main) {
                         @Suppress("UNCHECKED_CAST")

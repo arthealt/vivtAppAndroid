@@ -4,4 +4,4 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class Token (@PrimaryKey val token: String, val userStatus: String)
+data class User (@PrimaryKey val token: String, val loginToken: String, val userStatus: String, val qr: String)

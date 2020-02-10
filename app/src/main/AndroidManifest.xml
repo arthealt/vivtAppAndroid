@@ -33,7 +33,8 @@
             android:name=".application.activity.LoginActivity"
             android:windowSoftInputMode="adjustResize" />
 
-        <service android:name=".application.services.VivtFirebaseMessagingService">
+        <service android:name=".application.services.VivtFirebaseMessagingService"
+            android:stopWithTask="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

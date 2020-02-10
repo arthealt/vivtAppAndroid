@@ -5,6 +5,6 @@ import kotlinx.coroutines.Deferred
 
 interface SettingsRepository {
 
-    suspend fun updatePushChange(fcmToken: String, field: Int, value: Boolean): Deferred<Status>
+    suspend fun updatePushChange(field: Int, value: Boolean): Deferred<Status>
 
 }
