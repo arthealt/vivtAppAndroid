@@ -4,11 +4,10 @@ import androidx.lifecycle.*
 import com.fixee.vivt.application.helpers.Util
 import com.fixee.vivt.application.intent.StateTeachers
 import com.fixee.vivt.data.remote.models.Error
-import com.fixee.vivt.data.storage.entity.User
 import com.fixee.vivt.domain.implementations.MainRepositoryImpl
 import kotlinx.coroutines.*
 
-class TeachersViewModel (private val util: Util, private val user: User, private val repository: MainRepositoryImpl): ViewModel(), LifecycleObserver {
+class TeachersViewModel (private val util: Util, private val repository: MainRepositoryImpl): ViewModel(), LifecycleObserver {
 
     val state: MutableLiveData<StateTeachers> = MutableLiveData<StateTeachers>().apply { value = StateTeachers.NormalState() }
 

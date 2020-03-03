@@ -1,9 +1,6 @@
 package com.fixee.vivt.data.remote
 
-import com.fixee.vivt.data.remote.models.Auth
-import com.fixee.vivt.data.remote.models.ResponseBrs
-import com.fixee.vivt.data.remote.models.Status
-import com.fixee.vivt.data.remote.models.Teachers
+import com.fixee.vivt.data.remote.models.*
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
@@ -17,6 +14,10 @@ interface ApiService {
     @FormUrlEncoded
     @POST("get-pps-list")
     suspend fun getTeachers(@Field("token") token: String): Teachers
+
+    @FormUrlEncoded
+    @POST("get-notifications")
+    suspend fun getNotifications(@Field("token") token: String): Notifications
 
     @FormUrlEncoded
     @POST("push-permission-change")

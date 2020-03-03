@@ -1,7 +1,9 @@
 package com.fixee.vivt.domain.implementations
 
 import com.fixee.vivt.data.remote.ApiService
+import com.fixee.vivt.data.remote.models.Notifications
 import com.fixee.vivt.data.remote.models.ResponseBrs
+import com.fixee.vivt.data.remote.models.Status
 import com.fixee.vivt.data.remote.models.Teachers
 import com.fixee.vivt.data.storage.RoomAppDatabase
 import com.fixee.vivt.data.storage.entity.User
@@ -46,6 +48,38 @@ class MainRepositoryImpl @Inject constructor(@param:Named("fcmToken") private va
         }
 
         return teachers
+    }
+
+    override suspend fun getNotifications(): Notifications {
+        var notifications = GlobalScope.async{
+            apiService.getNotifications(user.token)
+        }.await()
+
+        if (notifications.error.isNotEmpty() && notifications.error[0].code == 300) {
+            if (loginWithToken()) {
+                notifications = GlobalScope.async {
+                    apiService.getNotifications(user.token)
+                }.await()
+            }
+        }
+
+        return notifications
+    }
+
+    override suspend fun updatePushChange(field: Int, value: Boolean): Status {
+        var update = GlobalScope.async {
+            apiService.pushUpdate("android", fcmToken, field, value)
+        }.await()
+
+        if (update.error.isNotEmpty() && update.error[0].code == 300) {
+            if (loginWithToken()) {
+                update = GlobalScope.async {
+                    apiService.pushUpdate("android", fcmToken, field, value)
+                }.await()
+            }
+        }
+
+        return update
     }
 
     override suspend fun logout() {

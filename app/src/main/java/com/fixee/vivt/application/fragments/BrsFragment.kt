@@ -156,7 +156,7 @@ class BrsFragment : Fragment() {
 
     private fun updateRecyclerView(brsList: ArrayList<Brs>) {
         recyclerView.adapter = BrsAdapter(brsList)
-        recyclerView.adapter!!.notifyDataSetChanged()
+        recyclerView.adapter?.notifyDataSetChanged()
     }
 
     private fun snackError(error: String) {

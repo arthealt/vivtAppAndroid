@@ -112,7 +112,7 @@ class MainActivity : AppCompatActivity(), BottomNavController.NavGraphProvider {
     }
 
     private fun toNotification() {
-        //startActivity(Intent(this, SettingsActivity::class.java))
+        startActivity(Intent(this, NotificationActivity::class.java))
     }
 
     private fun toSettings() {

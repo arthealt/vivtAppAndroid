@@ -1,6 +1,7 @@
 package com.fixee.vivt.di.component
 
 import com.fixee.vivt.application.activity.MainActivity
+import com.fixee.vivt.application.activity.NotificationActivity
 import com.fixee.vivt.application.activity.SettingsActivity
 import com.fixee.vivt.application.fragments.BrsFragment
 import com.fixee.vivt.application.fragments.TeachersFragment
@@ -15,6 +16,8 @@ interface MainComponent {
     fun inject(mainActivity: MainActivity)
 
     fun inject(settingsActivity: SettingsActivity)
+
+    fun inject(notificationActivity: NotificationActivity)
 
     fun inject(brsFragment: BrsFragment)
 
